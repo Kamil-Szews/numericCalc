@@ -52,19 +52,30 @@ int decToAny(int myInt, int myFinalSys) {
 			it++;
 		}
 	}
-	for (int i = it; i >= 0; i--) {
+	int myHelper = 0;
+	std::vector<int> finalValues;
+	for (int i = it - 1; i >= 0; i--) {
+		flag = true;
 		for (int j = 0; j < myFinalSys - 1; j++) {
-			if (sysPowers[i] * j < myInt) {
-
+			if ((sysPowers[i] * j) >= myInt && flag) {
+				finalValues.push_back(sysPowers[i] * j);
+				flag = false;
 			}
 		}
+		if (flag == false) {
+			finalValues.push_back(0);
+		}
+	}
+	for (int i = it - 1; i >= 0; i--) {
+		std::cout << "fV: " << finalValues[i] << "\n";
 	}
 	return 0;
 }
 
 int main() {
-	//int x = anyToDec("AAA", 12);
-	int y =  decToAny(300, 16);
+	int x = anyToDec("AAAA", 18);
+	std::cout << x;
+	//int y =  decToAny(300, 16);
 	return 0;
 }
 
